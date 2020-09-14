@@ -1,0 +1,36 @@
+/* Pretty Pandas Dataframes */
+/* https://gist.github.com/HHammond/22bf58c8f1a163d1f9ef#file-pretty-table-css */
+/* .dataframe * {border-color: #c0c0c0 !important;} */
+.dataframe table{width: 50%;}
+.dataframe th{background: #ccc; padding: 5px;}
+.dataframe td{text-align: left; min-width:5em; padding: 3px; }
+
+/* Format summary rows */
+.dataframe-summary-row tr:last-child,
+.dataframe-summary-col td:last-child{
+    background: #eee;
+    font-weight: 800;
+}
+
+body {
+	  background-color: whitesmoke;
+}
+
+
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.aligncenter {
+	    text-align: center;
+}
+
+.ascii-art {
+	  text-align:center;
+		  font-size: 0.9vw;
+			font-family: monospace;
+			white-space: pre;
+}
