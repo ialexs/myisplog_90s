@@ -2,4 +2,4 @@
 
 Using `speedtest_log_short_fixed.csv` (result from Does My ISP Sucks)
 
-![screenshot](myisp90s.jpg)
+![](myisp90s.jpg)
