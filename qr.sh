@@ -18,7 +18,7 @@ plots()
 	feedgnuplot --domain \
 	--timefmt "%Y-%m-%d %H:%M:%S" \
 	--set 'format x "%H:%M"' \
-	--with "lines lw 1" \
+	--with "lines lw 2" \
 	--legend 0 "Download" \
 	--legend 1 "Upload"  \
 	--set 'key outside'  \
@@ -64,14 +64,14 @@ df[['Timestamp','Ping (ms)',
 
 # Upload to S3
 s3upload(){
-	aws --profile YOURPROFILE s3 cp index.html s3://YOURBUCKET/
-	aws --profile YOURPROFILE s3 cp qr-dataframe.png s3://YOURBUCKET/
+	aws --profile ialexs_gmail s3 cp index.html s3://myisplog/
+	aws --profile ialexs_gmail s3 cp qr-dataframe.png s3://myisplog/
 	echo -e "\nUpload to S3.. done"
 }
 
 plots
 python -c "$df2html"
 cat qr-header.html > index.html
-echo "<h3><marquee>Data previous ~$hours hours</marquee></h3>" >> index.html
+echo "<h3><marquee><img align="left" src="qr-new.gif">Chart created: `date "+%a, %d/%b/%Y  %T %Z"` - Data previous ~$hours hours</marquee></h3>" >> index.html
 cat qr-dataframe.html qr-footer.html >> index.html
 s3upload
