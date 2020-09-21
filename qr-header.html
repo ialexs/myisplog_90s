@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta property="og:title" content="My ISP Log" />
 		<meta property="og:url" content="" />
-		<meta property="og:site_name" content="My ISP Log" />
+		<meta property="og:site_name" content="My Home ISP Log" />
 		<meta property="og:type" content="website" />
 
 		<!-- pelican-fresh mod /ialexs -->
@@ -49,14 +49,20 @@
 | |  | || |_| |  | |  ___) ||  __/  | |___| (_) || (_| |
 |_|  |_| \__, | |___||____/ |_|     |_____|\___/  \__, |
          |___/                                    |___/ 
-[[!!bring back 90s web-design!!]]
+[[!!BRING BACK 90S WEB-DESIGN!!]]
 		</div>
 
 		<a href="https://en.wikipedia.org/wiki/Netscape_Navigator"><img src="qr-netscape.gif"></a><br><img src="qr-welcome.gif" />
 		<hr />
-		<a href="qr-dataframe.png"
-			><img src="qr-dataframe.png" alt="line_chart_gnuplot" style="width: 64%;"
-		/></a>
-		<hr width="100%" />
 		<center>
-			<!-- dataframe pandas export -->
+		<h2>Speedtest.net chart - Interval 15 minutes</h2>
+		<!-- plot using gnuplot using speedtest.net data -->
+		<a href="qr-dataframe.png" ><img src="qr-dataframe.png" title="Speedtest.net chart. Plot with gnuplot" alt="Speedtest.net chart - gnuplot" style="width: 50%;" /></a>
+		<hr width="100%" />
+		<h2>Actual bandwidth usage - Router uplink to fiber modem</h2>
+		<!-- plot using Cacti SNMP trap to main router -->
+		<a href="cacti-graph.png" ><img src="cacti-graph.png" title="Router uplink to ISP chart. Plot with rrdtool with Cacti data" alt="Router uplink chart - rrdtool" style="width: 50%;" /></a>
+		<hr width="100%" />
+
+			<!-- Dataframe Pandas to_html()-->
+

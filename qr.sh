@@ -22,11 +22,11 @@ plots()
 	--legend 0 "Download" \
 	--legend 1 "Upload"  \
 	--set 'key outside'  \
-	--xlabel "\nChart created: `date "+%a, %d/%b/%Y  %T %Z"` \n(using Speedtest.net - Interval 15min)\n\nBiznetHome CustomerID: " \
+	--xlabel "\nChart created: `date "+%a, %d/%b/%Y  %T %Z"` \n(using Speedtest.net - Interval 15min - Last $hours hrs data)\n\nBiznetHome CustomerID: 3100097870" \
 	--ylabel "MBps" \
 	--set grid \
 	--hardcopy qr-dataframe.png \
-	--set "terminal png size 800,340"
+	--set "terminal png size 930,340"
 
 echo -e "\nPlot chart.. done"
 }
@@ -64,14 +64,22 @@ df[['Timestamp','Ping (ms)',
 
 # Upload to S3
 s3upload(){
-	aws --profile ialexs_gmail s3 cp index.html s3://myisplog/
-	aws --profile ialexs_gmail s3 cp qr-dataframe.png s3://myisplog/
+	/home/pi/.local/bin/aws s3 cp index.html s3://myisplog/
+	/home/pi/.local/bin/aws s3 cp qr-dataframe.png s3://myisplog/
+	/home/pi/.local/bin/aws s3 cp cacti-graph.png s3://myisplog/
 	echo -e "\nUpload to S3.. done"
 }
 
+# Plot it
 plots
-python -c "$df2html"
+
+# Export dataframe to HTML
+python3 -c "$df2html"
+
+# Create index.html
 cat qr-header.html > index.html
-echo "<h3><marquee><img align="left" src="qr-new.gif">Chart created: `date "+%a, %d/%b/%Y  %T %Z"` - Data previous ~$hours hours</marquee></h3>" >> index.html
+echo "<h3><marquee><img align="left" src="qr-new.gif">Chart created: `date "+%a, %d/%b/%Y  %T %Z"` - Previous Speedtest.net result ~$hours hrs back</marquee></h3>" >> index.html
 cat qr-dataframe.html qr-footer.html >> index.html
+
+# Upload to S3
 s3upload
