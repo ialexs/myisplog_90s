@@ -8,6 +8,7 @@ echo -e "\nReport created with $1 back interval\n(one interval = 15 mins)"
 
 points=$1
 hours=$(bc -l <<< "scale=1;(15*$points)/60")
+now=$(date +%Y%m%d-%H%M%S)
 
 # plot with feedgnuplot
 plots()
@@ -28,7 +29,9 @@ plots()
 	--hardcopy qr-dataframe.png \
 	--set "terminal png size 930,340"
 
-echo -e "\nPlot chart.. done"
+cp qr-dataframe.png /home/pi/Documents/isplog/qr-dataframe-$now.png
+
+echo -e "\nPlot chart.. done\nCopy to qr-dataframe-$now.png.. done"
 }
 
 # Export existing data to a nice HTML
